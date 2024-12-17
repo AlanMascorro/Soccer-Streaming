@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam Access</title>
+</head>
+<body>
+    <h1>Webcam Access Example</h1>
+    <video id="webcam" width="640" height="480" autoplay></video>
+
+    <script>
+        // Function to request webcam access
+        async function startWebcam() {
+            try {
+                // Get user media (camera and microphone)
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                
+                // Get the video element and set its source to the webcam stream
+                const videoElement = document.getElementById('webcam');
+                videoElement.srcObject = stream;
+            } catch (error) {
+                console.error('Error accessing webcam: ', error);
+                alert('Could not access the webcam. Please allow webcam access.');
+            }
+        }
+
+        // Start the webcam when the page loads
+        window.onload = startWebcam;
+    </script>
+</body>
+</html>
+
+
